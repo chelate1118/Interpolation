@@ -2,9 +2,9 @@
 
 import numpy as np
 from matplotlib import pyplot as plt
+import scipy as sp
 from piecewise import Function
 from datas import Datas
-
 
 def find_tertiary(x0, x1, y0, y1, dy0, dy1):
     coeff = np.matrix([
@@ -44,6 +44,19 @@ def simple_spline(data: Datas) -> Function:
         )
 
     return result
+
+
+def cubic_spline(data: Datas) -> Function:
+    n = data.len()
+    result = sp.interpolate.interp1d(data.x, data.y, kind='cubic')
+    ret = Function()
+
+    for i in range(n-1):
+        ret.data.append((
+            result.x[i], result.x[i+1], result
+        ))
+    
+    return ret
 
 
 def monotone_cubic_spline(data: Datas) -> Function:
