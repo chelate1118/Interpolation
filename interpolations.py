@@ -3,7 +3,7 @@
 import numpy as np
 import scipy as sp
 from piecewise import Function
-from datas import Datas
+from data import Data
 
 def find_tertiary(x0, x1, y0, y1, dy0, dy1):
     coeff = np.matrix([
@@ -23,7 +23,7 @@ def find_tertiary(x0, x1, y0, y1, dy0, dy1):
     return (np.linalg.inv(coeff) * const).transpose().tolist()[0][::-1]
 
 
-def simple_spline(data: Datas) -> Function:
+def simple_spline(data: Data) -> Function:
     result = Function()
     n = data.len()
 
@@ -45,7 +45,7 @@ def simple_spline(data: Datas) -> Function:
     return result
 
 
-def cubic_spline(data: Datas) -> Function:
+def cubic_spline(data: Data) -> Function:
     n = data.len()
     result = sp.interpolate.interp1d(data.x, data.y, kind='cubic')
     ret = Function()
@@ -58,7 +58,7 @@ def cubic_spline(data: Datas) -> Function:
     return ret
 
 
-def monotone_cubic_spline(data: Datas) -> Function:
+def monotone_cubic_spline(data: Data) -> Function:
     result = Function()
     n = data.len()
 
@@ -77,7 +77,7 @@ def monotone_cubic_spline(data: Datas) -> Function:
     return result
 
 
-def polynomial_spline(data: Datas) -> Function:
+def polynomial_spline(data: Data) -> Function:
     n = data.len()
 
     coeff = np.matrix([

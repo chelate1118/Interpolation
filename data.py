@@ -3,7 +3,7 @@
 from matplotlib import pyplot as plt
 
 
-class Datas:
+class Data:
     def __init__(self, data):
         unzipped = list(zip(*data))
         self.x = list(unzipped[0])
