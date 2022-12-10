@@ -1,7 +1,6 @@
-""" Cubic Spline Interpolation """
+""" Spline Interpolation """
 
 import numpy as np
-from matplotlib import pyplot as plt
 import scipy as sp
 from piecewise import Function
 from datas import Datas
